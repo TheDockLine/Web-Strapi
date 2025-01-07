@@ -20,12 +20,14 @@
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
   },
   "strapi": {
     "uuid": "e68c9393-e66c-4aa3-93dd-32a371e5aaf2"
+  },
+  "devDependencies": {
+    "better-sqlite3": "^11.7.2"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "be_theme_licenses",
+  "info": {
+    "singularName": "be-theme-license",
+    "pluralName": "be-theme-licenses",
+    "displayName": "BeTheme License"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "license_key": {
+      "type": "string"
+    }
+  }
+}
