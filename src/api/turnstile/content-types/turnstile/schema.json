@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "turnstiles",
+  "info": {
+    "singularName": "turnstile",
+    "pluralName": "turnstiles",
+    "displayName": "Turnstile"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}
