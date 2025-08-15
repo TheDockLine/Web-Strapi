@@ -1,18 +1,30 @@
 {
-  "kind": "collectionType",
-  "collectionName": "websites",
-  "info": {
-    "singularName": "website",
-    "pluralName": "websites",
-    "displayName": "Website"
-  },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "url": {
-      "type": "string"
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "websites",
+	"info": {
+		"singularName": "website",
+		"pluralName": "websites",
+		"displayName": "Website"
+	},
+	"options": {
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"url": {
+			"type": "string"
+		},
+		"client": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "api::client.client",
+			"inversedBy": "websites"
+		},
+		"be_theme_license": {
+			"type": "relation",
+			"relation": "oneToOne",
+			"target": "api::be-theme-license.be-theme-license",
+			"mappedBy": "current_website"
+		}
+	}
 }

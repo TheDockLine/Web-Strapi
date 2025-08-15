@@ -1,8 +1,9 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "nodenext",
-    "target": "ES2021",
-    "checkJs": true,
-    "allowJs": true
-  }
+	"compilerOptions": {
+		"jsx": "react",
+		"moduleResolution": "nodenext",
+		"target": "ES2021",
+		"checkJs": true,
+		"allowJs": true
+	}
 }

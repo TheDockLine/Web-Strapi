@@ -13,6 +13,12 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "websites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::website.website",
+      "mappedBy": "client"
     }
   }
 }

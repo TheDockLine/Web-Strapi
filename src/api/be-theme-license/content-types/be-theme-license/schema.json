@@ -12,7 +12,57 @@
   "pluginOptions": {},
   "attributes": {
     "license_key": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "usable": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "user": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "voixly",
+        "coltrucker"
+      ]
+    },
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Themeforest (envato)",
+        "Other"
+      ]
+    },
+    "other_platform": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "platform"
+            },
+            "Other"
+          ]
+        }
+      }
+    },
+    "purchase_date": {
+      "type": "date",
+      "required": true
+    },
+    "current_website": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::website.website",
+      "inversedBy": "be_theme_license"
+    },
+    "all_websites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::website.website"
     }
   }
 }

@@ -385,20 +385,38 @@ export interface ApiBeThemeLicenseBeThemeLicense
     draftAndPublish: true;
   };
   attributes: {
+    all_websites: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::website.website'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    license_key: Schema.Attribute.String;
+    current_website: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::website.website'
+    >;
+    license_key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::be-theme-license.be-theme-license'
     > &
       Schema.Attribute.Private;
+    other_platform: Schema.Attribute.String;
+    platform: Schema.Attribute.Enumeration<['Themeforest (envato)', 'Other']>;
     publishedAt: Schema.Attribute.DateTime;
+    purchase_date: Schema.Attribute.Date & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    usable: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    user: Schema.Attribute.Enumeration<['voixly', 'coltrucker']> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -427,6 +445,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    websites: Schema.Attribute.Relation<'oneToMany', 'api::website.website'>;
   };
 }
 
@@ -469,6 +488,11 @@ export interface ApiWebsiteWebsite extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    be_theme_license: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::be-theme-license.be-theme-license'
+    >;
+    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
