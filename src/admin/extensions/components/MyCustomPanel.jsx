@@ -1,30 +1,32 @@
 // my-plugin/components/MyCustomPanel.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { unstable_useContentManagerContext as useContentManagerContext } from "@strapi/strapi/admin";
 
 // The PanelComponent receives EditViewContext props
-const MyCustomPanel = ({ activeTab, collectionType, document, documentId, meta, model }) => {
+const MyCustomPanel = async ({ collectionType, document, documentId, meta, model }) => {
 	const { form } = useContentManagerContext();
-	const { values } = form;
-	console.log(form);
-	const { contentType } = useContentManagerContext();
+	const [item, setItem] = useState(null);
+	useEffect(() => {
+		fetch(`http://localhost:1337/api/websites/${documentId}?populate=*`, {})
+			.then((res) => res.json())
+			.then((data) => setItem(data)); // .data because Strapi wraps the response
+	}, [documentId]);
 
-	// Get all attributes from the content-type schema
-	const attributes = contentType?.attributes || {};
-	console.log(attributes);
-	return (
-		<div>
-			<h4>Relational Fields</h4>
-			<ul>
-				{Object.entries(attributes).map(([name, attr]) => (
-					<li key={name}>{name}</li>
-				))}
-			</ul>
-		</div>
-	);
+	console.log(item);
+	console.log(document);
+	console.log(form);
+
 	return {
-		title: "Information",
-		content: <div></div>,
+		title: "Item Details",
+		content: item && (
+			<div>
+				{Object.entries(item).map(([key, value]) => (
+					<div key={key}>
+						<strong>{key}:</strong> {JSON.stringify(value)}
+					</div>
+				))}
+			</div>
+		),
 	};
 };
 
